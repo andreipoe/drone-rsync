@@ -46,7 +46,7 @@ else
 fi
 
 # Building rsync command
-expr="rsync -az $ARGS"
+expr="rsync -az --progress $ARGS"
 
 if [[ -n "$PLUGIN_RECURSIVE" && "$PLUGIN_RECURSIVE" == "true" ]]; then
     expr="$expr -r"
@@ -118,7 +118,7 @@ do
     # Default Port 22
     PORT=$DEFAULT_PORT
     fi
-    echo $(printf "%s" "$ $(printf "$expr" "$PORT") $USER@$HOST:$PLUGIN_TARGET ...")
+    echo $(printf "%s" "$ $(printf "$expr" "$PORT") $USER@$HOST:$PLUGIN_TARGET")
     eval "$(printf "$expr" "$PORT") $USER@$HOST:$PLUGIN_TARGET"
     result=$(($result+$?))
     if [ "$result" -gt "0" ]; then exit $result; fi
