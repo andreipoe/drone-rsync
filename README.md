@@ -1,22 +1,24 @@
 # drone-rsync
-[![drone-rsync on Docker Hub](https://img.shields.io/docker/automated/drillster/drone-rsync.svg)](https://hub.docker.com/r/drillster/drone-rsync/)
+[![drone-rsync on Docker Hub](https://img.shields.io/docker/automated/andreipoe/drone-rsync.svg)](https://hub.docker.com/r/andreipoe/drone-rsync/)
 
 This is a pure Bash [Drone](https://github.com/drone/drone) >= 0.5 plugin to sync files to remote hosts.
 
-For more information on how to use the plugin, please take a look at the docs:
+## Docs
 
-- For Drone CI versions `< 1` : https://github.com/Drillster/drone-rsync/blob/master/0-DOCS.md
-- For Drone CI versions `>= 1` : https://github.com/Drillster/drone-rsync/blob/master/1-DOCS.md
+- [For Drone CI versions < 1](https://github.com/andreipoe/drone-rsync/blob/master/0-DOCS.md)
+- [For Drone CI versions >= 1](https://github.com/Drillster/drone-rsync/blob/master/1-DOCS.md)
 
-## Docker
-Build the docker image by running:
+## Build
+
+To build the Docker image from source:
 
 ```bash
-docker build --rm=true -t drillster/drone-rsync .
+docker build -t andreipoe/drone-rsync .
 ```
 
-## Usage
-Execute from the working directory (assuming you have an SSH server running on 127.0.0.1:22):
+## CLI Usage
+
+This is intended to be used a Drone plugin, but you can run the image from the working directory:
 
 ```bash
 docker run --rm \
@@ -28,5 +30,5 @@ docker run --rm \
   -e PLUGIN_ARGS="--blocking-io" \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
-  drillster/drone-rsync
+  andreipoe/drone-rsync
 ```
