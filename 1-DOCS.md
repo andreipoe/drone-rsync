@@ -13,6 +13,7 @@ The following parameters are used to configure the plugin:
 - `recursive`: recursively synchronize, defaults to `false`
 - `delete`: delete target folder contents, defaults to `false`
 - `script`: list of commands to execute on remote machines
+- `prescript` - list of commands to execute on remote machines before rsync occurs
 - `args`: a single string containing additional arguments passed to rsync
 
 ## Secrets
@@ -75,7 +76,11 @@ steps:
     exclude:
       - "**.*"
     args: "-c --chown=:www-data --chmod=ug+rwX"
-    script:
+    prescript:
+      - cd ~/packages
+      - md5sum -c app.tar.gz.md5
+      - tar -xf app.tar.gz -C ~/app    
+    script: 
       - cd ~/packages
       - md5sum -c app.tar.gz.md5
       - tar -xf app.tar.gz -C ~/app
